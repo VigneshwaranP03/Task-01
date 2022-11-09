@@ -1,26 +1,16 @@
 const button=document.querySelector('.container button');
-const jokeText=document.querySelector('.container p');
+const setup=document.querySelector('.container p ');
+const punchline=document.querySelector('.container  button');
 document.addEventListener('DOMContentLoaded',getJoke);
 
 button.addEventListener('click',getJoke);
 
 function getJoke(){
-  fetch('https://icanhazdadjoke.com/',{
-    headers:{ 
-        'Accept': 'application/json'
-}
-}).then(data=> data.json())
-  .then(obj=>jokeText.innerHTML=obj.joke)
+  fetch('https://official-joke-api.appspot.com/random_joke' )
+  .then(res=> res.json())
+  .then(data=>{
+    setup.innerHTML=data.setup;
+    punchline.innerHTML=data.punchline;
+  }) 
 }
 
-/*
-async function getJoke(){
-const jokeData= await fetch('https://icanhazdadjoke.com/',{
-headers:{ 
-    'Accept': 'application/json'
-}
-});
-const jokeObj= await jokeData.json();
-jokeText.innerHTML=jokeObj.joke; 
-}
-*/
